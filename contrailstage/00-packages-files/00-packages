@@ -6,6 +6,7 @@ gvfs
 rfkill
 libcamera-tools
 libcamera-apps
+python3-pip
 python3-picamera2
 python3-pyqt5
 python3-opengl

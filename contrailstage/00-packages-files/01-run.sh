@@ -2,4 +2,4 @@
 
 set -e
 
-cp -r "../contrail-cameras" "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/contrail-cameras"
+cp -r "../../../Raspberry_Pi" "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/Raspberry_Pi_contrail"
