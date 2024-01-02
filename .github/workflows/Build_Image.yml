@@ -6,8 +6,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      OUTPUT_FILE_PATH: deploy/image_$(date +\%Y-\%m-\%d)-Test-lite.zip
+
     steps:
-    - uses: actions/checkout@v1
+    - name: Checkout code
+      uses: actions/checkout@v1
+
     - name: Set up dependencies
       run: |
         sudo apt-get update
@@ -15,5 +20,11 @@ jobs:
 
     - name: Run build script
       run: |
-        chmod +x build.sh
-        build.sh
+        chmod +x ./build.sh
+        ./build.sh
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Raspberry-Pi-image
+        path: ${{ env.OUTPUT_FILE_PATH }}
