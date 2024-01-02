@@ -1,8 +1,6 @@
 name: Build Image
 on:
-  push:
-    branches:
-    - arm64
+  workflow_dispatch:
 
 jobs:
   build:
