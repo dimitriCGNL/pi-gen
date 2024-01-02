@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      OUTPUT_FILE_PATH: deploy/image_$(date +\%Y-\%m-\%d)-Test-lite.zip
+      OUTPUT_FILE_PATH: ./deploy/image_$(date +\%Y-\%m-\%d)-Test-lite.zip
 
     steps:
     - name: Checkout code
@@ -20,8 +20,8 @@ jobs:
 
     - name: Run build script
       run: |
-        chmod +x ./build.sh
-        ./build.sh
+        sudo chmod +x ./build.sh
+        sudo ./build.sh
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
