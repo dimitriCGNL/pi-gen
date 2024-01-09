@@ -29,10 +29,10 @@ jobs:
         sudo ./build.sh
 
     - name: List contents of deploy directory
-      run: ls -R ./pi-gen/deploy
+      run: ls -R ./deploy
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
         name: Raspberry-Pi-image
-        path: ./pi-gen/deploy/*.zip
+        path: ./deploy/*.zip
