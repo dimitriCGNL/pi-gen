@@ -28,7 +28,7 @@ jobs:
 
     - name: Run build script
       run: |
-        ls ./
+        ls ../
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
