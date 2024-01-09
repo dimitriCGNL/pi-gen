@@ -28,8 +28,7 @@ jobs:
 
     - name: Run build script
       run: |
-        sudo chmod +x ./build.sh
-        sudo ./build.sh
+        ls ./
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
