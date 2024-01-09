@@ -6,9 +6,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      OUTPUT_FILE_PATH: ./deploy/image_$(date +\%Y-\%m-\%d)-Test-lite.zip
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v1
@@ -35,4 +32,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: Raspberry-Pi-image
-        path: ${{ env.OUTPUT_FILE_PATH }}
+        path: ./pi-gen/deploy/*.zip
