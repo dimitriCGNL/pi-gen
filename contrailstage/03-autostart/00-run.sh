@@ -1,4 +1,6 @@
 #!/bin/bash
 set -e
 
-cp "./files/autostart.sh" "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/"
+cp -r "./files/autostart.sh" "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/autostart.sh"
+
+chmod +x "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/autostart.sh"
