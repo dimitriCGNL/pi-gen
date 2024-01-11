@@ -1,6 +1,10 @@
 name: Build Image
+
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - '*'
 
 jobs:
   build:
@@ -27,9 +31,6 @@ jobs:
       run: |
         sudo chmod +x ./build.sh
         sudo ./build.sh
-
-    - name: List contents of deploy directory
-      run: ls -R ./deploy
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
