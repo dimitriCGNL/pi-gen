@@ -10,7 +10,7 @@ while true; do
     TS_NODE_PID=$!
 
     # Wait for either process to exit
-    wait -n SERVER_PID TS_NODE_PID
+    wait $SERVER_PID $TS_NODE_PID
 
     # If one process exits, kill the other
     if ps -p $SERVER_PID > /dev/null; then

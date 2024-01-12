@@ -3,10 +3,8 @@
 install -m 755 "./files/autostart.sh" "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/autostart.sh"
 
 on_chroot << EOF
-    CRON_COMMAND="@reboot /home/${FIRST_USER_NAME}/autostart.sh"
-    if crontab -u ${FIRST_USER_NAME} -l &>/dev/null; then
-    (crontab -u ${FIRST_USER_NAME} -l ; echo "$CRON_COMMAND") | crontab -u ${FIRST_USER_NAME} -
-    else
-    echo "$CRON_COMMAND" | crontab -u ${FIRST_USER_NAME} -
-    fi
+    SCRIPT_PATH="/home/${FIRST_USER_NAME}/autostart.sh"
+
+    # Add the line to run the shell script before "exit 0" in rc.local
+    sed -i "/^exit 0/i $SCRIPT_PATH" /etc/rc.local
 EOF
