@@ -2,11 +2,13 @@
 
 while true; do
     # Run Python server
-    python3 ./Raspberry_Pi_contrail/server.py &
+    # Note: change 'contailpi' to the username set in the config file
+    python3 "/home/contrailpi/Raspberry_Pi_contrail/server.py" &
     SERVER_PID=$!
 
     # Run TypeScript Node
-    npx ts-node ./Raspberry_Pi_contrail/Firebase.ts &
+    # Note: change 'contailpi' to the username set in the config file
+    npx ts-node /home/contrailpi/Raspberry_Pi_contrail/Firebase.ts &
     TS_NODE_PID=$!
 
     # Wait for either process to exit
