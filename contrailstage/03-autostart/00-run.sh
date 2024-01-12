@@ -1,10 +1,12 @@
-#!/bin/bash
-
-set -e
+#!/bin/bash -e
 
 install -m 755 "./files/autostart.sh" "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/autostart.sh"
 
 on_chroot << EOF
     CRON_COMMAND="@reboot /home/${FIRST_USER_NAME}/autostart.sh"
+    if crontab -u ${FIRST_USER_NAME} -l &>/dev/null; then
     (crontab -u ${FIRST_USER_NAME} -l ; echo "$CRON_COMMAND") | crontab -u ${FIRST_USER_NAME} -
+    else
+    echo "$CRON_COMMAND" | crontab -u ${FIRST_USER_NAME} -
+    fi
 EOF
