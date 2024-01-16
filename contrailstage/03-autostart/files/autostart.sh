@@ -1,14 +1,17 @@
 #!/bin/bash
 
+# Set the working directory
+cd "/home/contrailpi/Raspberry_Pi_contrail"
+
 while true; do
     # Run Python server
     # Note: change 'contailpi' to the username set in the config file
-    python3 "/home/contrailpi/Raspberry_Pi_contrail/server.py" &
+    python3 "server.py" &
     SERVER_PID=$!
 
     # Run TypeScript Node
     # Note: change 'contailpi' to the username set in the config file
-    npx ts-node /home/contrailpi/Raspberry_Pi_contrail/Firebase.ts &
+    npx ts-node "Firebase.ts" &
     TS_NODE_PID=$!
 
     # Wait for either process to exit
