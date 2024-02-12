@@ -19,6 +19,12 @@ jobs:
         repository: contrailcirrus/contrail-cameras
         ref: 'Automatic_imu_calibration'
         token: ${{ secrets.PAT_TOKEN }}
+      
+    - name: Show environment
+      run: |
+        pwd
+        ls -l .
+        ls -l contrail-cameras
 
     - name: Set up dependencies
       run: |
