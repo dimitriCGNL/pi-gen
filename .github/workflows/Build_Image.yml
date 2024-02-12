@@ -14,15 +14,11 @@ jobs:
     - name: Checkout contrail-cam repo
       uses: actions/checkout@v1
       with:
-        path: ./contrail-cameras
+        path: ${{ github.workspace }}/contrail-cameras
         submodules: 'true'
         repository: contrailcirrus/contrail-cameras
         ref: 'Automatic_imu_calibration'
         token: ${{ secrets.PAT_TOKEN }}
-      
-    - name: Show environment
-      run: |
-        ls
 
     - name: Set up dependencies
       run: |
@@ -31,7 +27,7 @@ jobs:
 
     - name: Run build script
       run: |
-        cd ./contrail-cameras/preloaded-rpi-image
+        cd ${{ github.workspace }}/contrail-cameras/preloaded-rpi-image
         sudo chmod +x ./build.sh
         sudo ./build.sh
 
@@ -39,4 +35,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: Raspberry-Pi-image
-        path: ./contrail-cameras/preloaded-rpi-image/deploy/*.zip
+        path: ${{ github.workspace }}/contrail-cameras/preloaded-rpi-image/deploy/*.zip
