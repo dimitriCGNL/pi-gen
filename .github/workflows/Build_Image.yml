@@ -12,13 +12,16 @@ jobs:
 
     steps:
     - name: Checkout contrail-cam repo
-      uses: actions/checkout@v1
+      uses: actions/checkout@v4
       with:
-        path: ${{ github.workspace }}/contrail-cameras
+        path: contrail-cameras
         submodules: 'true'
         repository: contrailcirrus/contrail-cameras
         ref: 'Automatic_imu_calibration'
         token: ${{ secrets.PAT_TOKEN }}
+
+    - name: Print ls -l
+      run: ls -l
 
     - name: Set up dependencies
       run: |
