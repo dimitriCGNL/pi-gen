@@ -2,9 +2,22 @@
 
 install -m 755 "./files/autostart.sh" "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/autostart.sh"
 
-SCRIPT_PATH="/home/${FIRST_USER_NAME}/autostart.sh"
-# Escape special characters in the script path
-ESCAPED_SCRIPT_PATH=$(echo "$SCRIPT_PATH" | sed 's/[\/&]/\\&/g')
+on_chroot << EOF
+    # Define the user and the script to run
+    USER=contrailpi
+    SCRIPT_PATH="/home/${FIRST_USER_NAME}/autostart.sh"
 
-# Add the line to run the shell script before "exit 0" in rc.local
-sed -i "/^exit 0/i $ESCAPED_SCRIPT_PATH" "${ROOTFS_DIR}/etc/rc.local"
+    # Create a temporary file to hold the new crontab entries
+    TEMP_CRONTAB=$(mktemp)
+
+    # Add the cron entry for the script
+    echo "@reboot $SCRIPT_PATH" >> "$TEMP_CRONTAB"
+
+    # Install the new crontab file for the specified user
+    crontab -u "$USER" "$TEMP_CRONTAB"
+
+    # Clean up the temporary file
+    rm "$TEMP_CRONTAB"
+
+    echo "Crontab updated for user $USER to run $SCRIPT_PATH on every reboot."
+EOF

@@ -11,15 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v1
-
     - name: Checkout contrail-cam repo
       uses: actions/checkout@v1
       with:
+        submodules: 'true'
         repository: contrailcirrus/contrail-cameras
-        path: ./contrail-cameras
-        ref: 'Disable_ext_calibration'
+        ref: 'Automatic_imu_calibration'
         token: ${{ secrets.PAT_TOKEN }}
 
     - name: Set up dependencies
@@ -29,6 +26,7 @@ jobs:
 
     - name: Run build script
       run: |
+        cd ./preloaded-rpi-image
         sudo chmod +x ./build.sh
         sudo ./build.sh
 
@@ -36,4 +34,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: Raspberry-Pi-image
-        path: ./deploy/*.zip
+        path: ./preloaded-rpi-image/deploy/*.zip
