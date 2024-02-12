@@ -22,9 +22,7 @@ jobs:
       
     - name: Show environment
       run: |
-        pwd
-        ls -l .
-        ls -l contrail-cameras
+        ls
 
     - name: Set up dependencies
       run: |
