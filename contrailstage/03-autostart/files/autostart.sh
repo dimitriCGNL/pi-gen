@@ -1,5 +1,18 @@
 #!/bin/bash
 
+firstBoot_script_path="/home/contrailpi/firstBoot.sh"
+
+# Check if the script exists
+if [ -f "$firstBoot_script_path" ]; then
+    # Execute the script
+    bash "$firstBoot_script_path"
+    
+    # Remove the script after execution
+    sudo rm "$firstBoot_script_path"
+else
+    echo "Script not found, continuing..."
+fi
+
 # Set the working directory
 cd "/home/contrailpi/Raspberry_Pi_contrail"
 

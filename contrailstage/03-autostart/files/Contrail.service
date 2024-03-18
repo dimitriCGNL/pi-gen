@@ -1,0 +1,11 @@
+[Unit]
+Description=Contrail Server Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/contrailpi/autostart.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
